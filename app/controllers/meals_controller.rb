@@ -40,6 +40,7 @@ class MealsController < ApplicationController
         params.require(:meal).permit(:name, :carbs, :fat, :protein, foods_attributes: [:name, :serving_size, :carbs, :fat, :protein, :user_id])
     end
 
+    
     def assign_meal_macros
         total_meal_carb_count
         total_meal_fat_count

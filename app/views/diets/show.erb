@@ -26,11 +26,15 @@ Here is your diet.
      
     <% if @selected_meal %>
     <%= @selected_meal.name %> 
-    <%= @selected_meal.carbs %> <%= @selected_meal.protein %><%= @selected_meal.fat %>
+    c:<%= @selected_meal.carbs %> p:<%= @selected_meal.protein %> f:<%= @selected_meal.fat %>
+    calories:<%= total_calories(@selected_meal) %>
+   
 <br>
-    <% @selected_meal.foods.each do |food| %> 
+
+    <% @selected_meal.foods.where(user_id: @user.id).each do |food| %> 
     <%= food.name %> c:<%= food.carbs %> p:<%= food.protein %> f:<%= food.fat %><br>
-        
+    
+        calories:<%= total_calories(food)%>
         <%end%>
     <% end %>
    

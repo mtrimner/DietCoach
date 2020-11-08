@@ -1,5 +1,5 @@
 class DietsController < ApplicationController
-helper_method :params
+
 
 def new
     @user = current_user
@@ -32,13 +32,13 @@ def show
             @foods = Food.high_fat
         end
     
-    @user = current_user
+    # @user = current_user
     @diet = @user.diet
     @total_cpm = @user.total_energy_expenditure * 0.25
     @start_date = @user.diet.start_date
     @end_date = @user.diet.end_date
     @food = Food.find_by(name: params[:name])
-    @meals = Meal.all
+    @meals = @user.meals
     @meal = Meal.new
     if !params[:meal_id].blank?
     @selected_meal = Meal.find_by_id(params[:meal_id])
