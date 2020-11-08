@@ -1,5 +1,5 @@
 class DietsController < ApplicationController
-   
+helper_method :params
 
 def new
     @user = current_user
@@ -9,7 +9,6 @@ end
 def create
     @user = current_user
     @diet = Diet.new(diet_params)
-    binding.pry
     if @diet.valid?
         if @diet.save
             redirect_to user_diet_path(@user, @diet)
@@ -19,7 +18,7 @@ def create
     else
         render '/new'
     end
-end
+end 
 
 def show
     
