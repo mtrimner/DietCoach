@@ -1,0 +1,28 @@
+Your Meals
+
+<% @user_meals.each do |meal| %>
+<%= form_with(url: '/foods', method: "post", local: true) do |f| %>
+<%= f.label :meal_id, meal.name %>
+<%= f.hidden_field :meal_id, value: meal.id %>
+<%= f.submit %>
+<% end %>
+<% end %>
+
+<br>
+ Community Meals
+
+<% @community_meals.each do |meal| %>
+<%= form_with(url: '/foods', method: "post", local: true) do |f| %>
+<%= f.label :meal_id, meal.name %>
+<%= f.hidden_field :meal_id, value: meal.id %>
+<%= f.submit %>
+<% end %>
+<% end %>
+
+
+
+<%= form_with(url: '/meals', method: "post", local: true) do %>
+    <%= label_tag :meal_id %>
+    <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Macro", include_blank: true %>
+    <%= submit_tag("Select Meal") %>
+    <% end %>

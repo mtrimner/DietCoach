@@ -1,0 +1,81 @@
+Here is your diet.
+<%= Date.today.strftime("%a, %e %b %Y") %>
+
+<% if Date.today < @start_date %>
+<p> Your diet starts in <%= Integer(@start_date - Date.today) %></p> 
+<%= link_to 'Edit Diet', edit_diet_path(@diet) %>
+<% elsif Date.today > @end_date %>
+<p> Your diet is over! Congrats! </p>
+<% else %>
+<p> Here are your meals. </p>
+<h2>Meal 1 Goals</h2>
+<p>Carbs: <%= ((@total_cpm * 0.35) / 4).floor %>g </p>
+<p>Protein: <%= ((@total_cpm * 0.4) / 4).floor %>g </p>
+<p>Fat: <%= ((@total_cpm * 0.25) / 4).floor %>g </p>
+
+
+<h4>Select Foods</h4>
+
+<%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
+    <%= label_tag :filter %>
+    <%= select_tag :filter, options_for_select(["High Protein", "High Carb", "High Fat"]), prompt: "Select Macro" %>
+    <%= submit_tag("Filter") %>
+    <% end %>
+<br>
+      
+     
+    <% if @selected_meal %>
+    <%= @selected_meal.name %> 
+    <%= @selected_meal.carbs %> <%= @selected_meal.protein %><%= @selected_meal.fat %>
+<br>
+    <% @selected_meal.foods.each do |food| %> 
+    <%= food.name %> c:<%= food.carbs %> p:<%= food.protein %> f:<%= food.fat %><br>
+        
+        <%end%>
+    <% end %>
+   
+
+<%= form_with(model: @meal, url: "/meals", method: "post", local: true) do |f| %>
+    <%= f.label :name, "Meal Name" %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :location, value: "diets"%>
+    <h3> Add your foods below </h3>
+    <%= f.fields_for :foods do | i | %>
+        <%= i.label :name, "Food Name" %> 
+        <%= i.text_field :name %> <br>
+        <%= i.label :serving_size, "Serving Size" %>
+        <%= i.number_field :serving_size %> <br>
+        <%= i.label :carbs, "Carbs" %>
+        <%= i.number_field :carbs %> <br>
+        <%= i.label :fat, "Fat" %>
+        <%= i.number_field :fat %> <br>
+        <%= i.label :protein, "Protein" %>
+        <%= i.number_field :protein %> <br>
+        <%= i.hidden_field :user_id, value: @user.id %>
+        <br>
+    <% end %> 
+    <br>
+    <%= f.submit %>
+
+   
+<% end %>
+    <br>
+
+   <%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
+    <%= label_tag :meal_id %>
+    <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Macro", include_blank: true %>
+    <%= submit_tag("Select Meal") %>
+    <% end %>
+
+    
+    
+  
+
+
+   
+
+
+    <% end %>
+   
+
+

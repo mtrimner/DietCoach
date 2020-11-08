@@ -1,0 +1,7 @@
+<%= @meal.name %>
+
+<% @meal.foods.each do | food | %>
+<%= food.name %>
+<% end %>
+
+<li><%= link_to 'Community Meal', meals_path %></li>
