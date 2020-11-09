@@ -9,11 +9,12 @@ Here is your diet.
 <% else %>
 <p> Here are your meals. </p>
 <h2>Meal 1 Goals</h2>
+
 <p>Carbs: <%= ((@total_cpm * 0.35) / 4).floor %>g </p>
 <p>Protein: <%= ((@total_cpm * 0.4) / 4).floor %>g </p>
 <p>Fat: <%= ((@total_cpm * 0.25) / 4).floor %>g </p>
-
-
+<%= calories_per_meal(4) %>
+<%= daily_calories %>
 <h4>Select Foods</h4>
 
 <%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>

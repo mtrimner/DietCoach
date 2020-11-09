@@ -1,5 +1,5 @@
 class DietsController < ApplicationController
-
+    helper_method :daily_calories
 
 def new
     @user = current_user
@@ -32,8 +32,8 @@ def show
             @foods = Food.high_fat
         end
     
-    # @user = current_user
     @diet = @user.diet
+    @daily_calories = (@user.total_energy_expenditure - @diet.daily_calorie_variance)
     @total_cpm = @user.total_energy_expenditure * 0.25
     @start_date = @user.diet.start_date
     @end_date = @user.diet.end_date
@@ -70,6 +70,11 @@ private
 
 def diet_params
    params.require(:diet).permit(:goal, :current_weight, :target_weight, :activity_level, :end_date, :start_date, :user_id)
+end
+
+def daily_calories
+    @diet = @user.diet
+    (@user.total_energy_expenditure - @diet.daily_calorie_variance)
 end
 
 end
