@@ -6,9 +6,9 @@ class FoodsController < ApplicationController
         @diet = Diet.find_by(user_id: @user.id)
         @meal = Meal.find_by_id(params[:meal_id])
         @meal.foods.each do | food |
-         Food.create(name: food.name, carbs: food.carbs, fat: food.fat, protein: food.protein, user_id: @user.id, meal_id: food.meal_id, serving_size: food.serving_size)
-        
+         @user.foods.build(name: food.name, carbs: food.carbs, fat: food.fat, protein: food.protein, meal: @meal, serving_size: food.serving_size)
         end
+        binding.pry
         if @user.save
             flash[:notice] = "Food added to your library"
            

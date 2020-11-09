@@ -38,7 +38,8 @@ def show
     @start_date = @user.diet.start_date
     @end_date = @user.diet.end_date
     @food = Food.find_by(name: params[:name])
-    @meals = @user.meals
+
+    @meals = @user.meals.uniq
     @meal = Meal.new
     if !params[:meal_id].blank?
     @selected_meal = Meal.find_by_id(params[:meal_id])

@@ -1,0 +1,39 @@
+
+
+   <div class="field"> 
+    <%= f.label :name, "Meal Name" %>
+    <%= f.text_field :name %>
+    </div>
+    <%= f.hidden_field :carbs %>
+    <%= f.hidden_field :protein %>
+    <%= f.hidden_field :fat %>
+    <h3> Add your foods below </h3>
+    <%= f.fields_for :foods do | i | %>
+    <div class="field"> 
+        <%= i.label :name, "Food Name" %> 
+        <%= i.text_field :name %> <br>
+        </div>
+        <br>
+        <div class="field"> 
+         <%= i.label :serving_size, "Serving Size" %>
+        <%= i.number_field :serving_size %> <br>
+        </div>
+        <div class="field"> 
+        <%= i.label :carbs, "Carbs" %>
+        <%= i.number_field :carbs %> <br>
+        </div>
+        <div class="field"> 
+        <%= i.label :fat, "Fat" %>
+        <%= i.number_field :fat %> <br>
+        </div>
+        <div class="field"> 
+        <%= i.label :protein, "Protein" %>
+        <%= i.number_field :protein %> <br>
+        </div>
+        <%= i.hidden_field :user_id, value: this_user.id %>
+        <br>
+    <% end %> 
+    <br>
+    <div class="action"> 
+    <%= f.submit %>
+    </div>

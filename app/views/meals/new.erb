@@ -1,26 +1,6 @@
 
-
 <%= form_with model: @meal, local: true do |f| %>
-    <%= f.label :name, "Meal Name" %>
-    <%= f.text_field :name %>
-    <%= f.hidden_field :carbs %>
-    <%= f.hidden_field :protein %>
-    <%= f.hidden_field :fat %>
-    <h3> Add your foods below </h3>
-    <%= f.fields_for :foods do | i | %>
-        <%= i.label :name, "Food Name" %> 
-        <%= i.text_field :name %> <br>
-         <%= i.label :serving_size, "Serving Size" %>
-        <%= i.number_field :serving_size %> <br>
-        <%= i.label :carbs, "Carbs" %>
-        <%= i.number_field :carbs %> <br>
-        <%= i.label :fat, "Fat" %>
-        <%= i.number_field :fat %> <br>
-        <%= i.label :protein, "Protein" %>
-        <%= i.number_field :protein %> <br>
-        <%= i.hidden_field :user_id, value: @user.id %>
-        <br>
-    <% end %> 
-    <br>
-    <%= f.submit %>
+
+<%= render partial: "meals/new", locals: {this_user: @user, f: f} %>
+
 <% end %>

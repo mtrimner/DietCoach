@@ -3,7 +3,7 @@ class MealsController < ApplicationController
     def index
         @meals = Meal.all
         # @user = current_user
-        @user_meals = Meal.all
+        @user_meals = @user.meals.uniq
         @community_meals = @meals - @user.meals
     end
     
@@ -14,11 +14,13 @@ class MealsController < ApplicationController
     end
 
     def create
-    assign_meal_macros
+       assign_meal_macros
        @user = current_user
-       @diet = Diet.find_by(user_id: @user.id) 
+       @diet = Diet.find_by(user_id: @user.id)
+    
        @meal = Meal.new(meal_params)
             if @meal.save
+
                  if params[:meal][:location]
                      redirect_to user_diet_path(@user, @diet)
                  else
