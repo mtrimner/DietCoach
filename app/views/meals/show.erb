@@ -1,7 +1,8 @@
-<%= @meal.name %>
+<%= @meal.name %><br>
 
 <% @meal.foods.each do | food | %>
 <%= food.name %>
 <% end %>
 
-<li><%= link_to 'Community Meal', meals_path %></li>
+
+<h6><%= link_to("Delete your meal", meal_path(@meal), method: :delete, data:{confirm: "Do you really want to delete me?"}) %></h6>

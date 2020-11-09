@@ -1,10 +1,10 @@
 Your Meals
 
 <% @user_meals.each do |meal| %>
-<%= form_with(url: '/foods', method: "post", local: true) do |f| %>
+<%= form_with(url: meal_path(meal), method: "get", local: true) do |f| %>
 <%= f.label :meal_id, meal.name %>
 <%= f.hidden_field :meal_id, value: meal.id %>
-<%= f.submit %>
+<%= f.submit "See Meal" %>
 <% end %>
 <% end %>
 

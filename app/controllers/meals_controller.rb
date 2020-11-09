@@ -17,7 +17,6 @@ class MealsController < ApplicationController
        assign_meal_macros
        @user = current_user
        @diet = Diet.find_by(user_id: @user.id)
-    binding.pry
        @meal = Meal.new(meal_params)
             if @meal.save
 
@@ -32,8 +31,18 @@ class MealsController < ApplicationController
     end
 
     def show
-       
         @meal = Meal.find_by(id: params[:id])
+    end
+
+    def destroy
+        @meal = Meal.find_by_id(params[:id])
+        @user.meals.delete(@meal)
+        @user_foods = Food.associated_food(@user.id, @meal.id)
+
+        if @meal.foods.count == 0
+            @meal.delete
+        end
+       redirect_to meals_path
     end
 
     private

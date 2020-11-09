@@ -17,12 +17,12 @@ Here is your diet.
 <%= daily_calories %>
 <h4>Select Foods</h4>
 
-<%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
-    <%= label_tag :filter %>
-    <%= select_tag :filter, options_for_select(["High Protein", "High Carb", "High Fat"]), prompt: "Select Macro" %>
-    <%= submit_tag("Filter") %>
+ <%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
+    <%= label_tag :meal_id %>
+    <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Meal", include_blank: true %>
+    <%= submit_tag("Select Meal") %>
     <% end %>
-<br>
+    <br>
       
      
     <% if @selected_meal %>
@@ -51,7 +51,7 @@ Here is your diet.
 
    <%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
     <%= label_tag :meal_id %>
-    <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Macro", include_blank: true %>
+    <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Meal", include_blank: true %>
     <%= submit_tag("Select Meal") %>
     <% end %>
 
@@ -59,6 +59,12 @@ Here is your diet.
     
   
 
+<%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
+    <%= label_tag :filter %>
+    <%= select_tag :filter, options_for_select(["High Protein", "High Carb", "High Fat"]), prompt: "Select Macro" %>
+    <%= submit_tag("Filter") %>
+    <% end %>
+<br>
 
    
 
