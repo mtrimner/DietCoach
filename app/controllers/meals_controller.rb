@@ -17,7 +17,7 @@ class MealsController < ApplicationController
        assign_meal_macros
        @user = current_user
        @diet = Diet.find_by(user_id: @user.id)
-    
+    binding.pry
        @meal = Meal.new(meal_params)
             if @meal.save
 

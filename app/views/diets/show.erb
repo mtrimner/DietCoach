@@ -13,7 +13,7 @@ Here is your diet.
 <p>Carbs: <%= ((@total_cpm * 0.35) / 4).floor %>g </p>
 <p>Protein: <%= ((@total_cpm * 0.4) / 4).floor %>g </p>
 <p>Fat: <%= ((@total_cpm * 0.25) / 4).floor %>g </p>
-<%= calories_per_meal(4) %>
+<%= calories_per_meal(@mpd) %>
 <%= daily_calories %>
 <h4>Select Foods</h4>
 

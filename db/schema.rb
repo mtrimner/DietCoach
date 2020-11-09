@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_210830) do
+ActiveRecord::Schema.define(version: 2020_11_09_061844) do
+
+  create_table "days_tables", force: :cascade do |t|
+    t.date "day"
+    t.boolean "goal_achieved", default: false
+    t.integer "diet_id"
+    t.integer "carbs_consumed"
+    t.integer "fat_consumed"
+    t.integer "protein_consumed"
+    t.integer "calories_consumed"
+  end
 
   create_table "diets", force: :cascade do |t|
     t.string "goal"
@@ -20,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_11_05_210830) do
     t.integer "target_weight"
     t.integer "user_id", null: false
     t.integer "activity_level"
+    t.integer "meals_per_day"
     t.index ["user_id"], name: "index_diets_on_user_id"
   end
 

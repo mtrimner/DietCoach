@@ -9,7 +9,9 @@ end
 def create
     @user = current_user
     @diet = Diet.new(diet_params)
+    binding.pry
     if @diet.valid?
+        binding.pry
         if @diet.save
             redirect_to user_diet_path(@user, @diet)
         else  
@@ -32,6 +34,7 @@ def show
             @foods = Food.high_fat
         end
     
+    @mpd = @user.diet.meals_per_day
     @diet = @user.diet
     @daily_calories = (@user.total_energy_expenditure - @diet.daily_calorie_variance)
     @total_cpm = @user.total_energy_expenditure * 0.25
@@ -69,7 +72,7 @@ def update
 private
 
 def diet_params
-   params.require(:diet).permit(:goal, :current_weight, :target_weight, :activity_level, :end_date, :start_date, :user_id)
+   params.require(:diet).permit(:goal, :current_weight, :target_weight, :activity_level, :meals_per_day, :end_date, :start_date, :user_id)
 end
 
 def daily_calories

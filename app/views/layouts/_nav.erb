@@ -5,7 +5,7 @@
 <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
 <li><%= link_to 'Stats', new_user_user_stat_path(current_user) %></li>
 <li><%= link_to 'New Meal', new_meal_path %></li>
-
+<li><%= link_to 'My Meals', meals_path %></li>
 
 <% else %>
 
