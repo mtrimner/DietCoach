@@ -1,20 +1,31 @@
 <div class="d-flex align-items-center flex-column">
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h4 class="card-title">Primary card title</h4>
-    <p class="card-text align-text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-<p> Home </p>
-
-    <% if @user %>
-    <%= @user.name %>
-    Get started
-    <li><%= link_to 'Stats', new_user_user_stat_path(current_user) %></li>
-    <% else %>
-    <p> Hello!</p>
-    <% end %>
-
-     </div>
-</div>
+  <div class="card text-white bg-primary mb-3" style="max-width: 40rem;">
+      
+    <div class="card-header text-center">
+      <% if @user %>
+      Hi <%= @user.name %>!
+      <% else %>
+      <p> Hello!</p>
+      <% end %>
+      </div>
+    <div class="card-body">
+      <h4 class="card-title align-text-center text-center">
+        <%if @diet == nil%>
+        Let's Begin
+        <% else %>
+        Welcome back!
+        <% end %>
+      </h4>
+      <p class="card-text align-text-center text-center">
+      <%if @diet == nil%>
+        On the next few screens, we are going to ask some basic information about you. Answer the questions as accurately as possible to help us create an effective diet for you. If you make a mistake, don't worry. Keep going and you can easily edit it later.
+        <br>
+        <br>
+        <%= link_to 'Get Started', new_user_user_stat_path(current_user) %>
+        <% else %>
+        Welcome back!
+        <% end %>
+      </p>        
+    </div>
+  </div>
 </div>

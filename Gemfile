@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry'
 gem 'devise'
 gem 'omniauth-github'
-
+gem 'bootstrap_form', '~> 4.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
