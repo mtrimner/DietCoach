@@ -1,4 +1,11 @@
-<h2>Sign up</h2>
+
+<div class="d-flex align-items-center flex-column">
+<div class="card text-white bg-primary mb-3 align-items-center" style="max-width: 20rem;">
+  <div class="card-header">Sign Up</div>
+  <div class="card-body">
+    <h4 class="card-title">Primary card title</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -9,15 +16,15 @@
   </div>
 
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, placeholder: "Enter email" %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em><%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -33,3 +40,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
