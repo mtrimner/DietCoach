@@ -1,10 +1,9 @@
-<h1>This is a test</h1>
 
 <% if @diet.errors.any? %>
         <h5 class="error"><%= @diet.errors.full_messages.to_sentence %></h5>
 <% end %>
-
-    <%= form_with model: [@user, @diet], method: 'post' do |f| %>
+<div class="d-flex align-items-center flex-column">
+    <%= bootstrap_form_with model: [@user, @diet], method: 'post' do |f| %>
   
    <%= render 'form', f: f %>
 
