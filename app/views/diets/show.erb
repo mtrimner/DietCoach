@@ -1,28 +1,66 @@
-Here is your diet.
-<%= Date.today.strftime("%a, %e %b %Y") %>
-
-<% if Date.today < @start_date %>
-<p> Your diet starts in <%= Integer(@start_date - Date.today) %></p> 
-<%= link_to 'Edit Diet', edit_diet_path(@diet) %>
-<% elsif Date.today > @end_date %>
-<p> Your diet is over! Congrats! </p>
-<% else %>
-<p> Here are your meals. </p>
-<h2>Meal 1 Goals</h2>
-
-<p>Carbs: <%= carbs_amount %>g </p> 
-<p>Protein: <%= protein_amount %>g </p>
-<p>Fat: <%= fat_amount %>g </p>
-<%= calories_per_meal %>
-<%= daily_calories %>
-<h4>Select Foods</h4>
-
- <%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
-    <%= label_tag :meal_id %>
-    <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Meal", include_blank: true %>
-    <%= submit_tag("Select Meal") %>
+<div class="container">
+  <div class="row justify-content-center">   
+    <% if Date.today < @start_date %>
+    <p> Your diet starts in <%= Integer(@start_date - Date.today) %>'s. This is just a preview of day 1.</p> 
+    <%= link_to 'Click here to edit the diet and change it\'s start date', edit_diet_path(@diet) %>
+    <% elsif Date.today > @end_date %>
+    <p> Your diet is over! Congrats! </p>
+    <% else %>
+    <h4>Today's date: <%= Date.today.strftime("%a, %e %b %Y") %></h4>
     <% end %>
+  </div>
+<br>
+
+  <div class="row d-flex justify-content-center">
+    <h4>Meal 1 targets!</h4>
+  </div>
     <br>
+  <div class="row d-flex justify-content-center">
+    <div class="col d-flex justify-content-center">
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <h4 class="card-title">Carbs: <%= carbs_amount %>g </h4>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <h4 class="card-title">Carbs: <%= protein_amount %>g </h4>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <h4 class="card-title">Carbs: <%= fat_amount %>g </h4>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <h4 class="card-title">Total calories: <%= calories_per_meal %> </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+<%= daily_calories %>
+
+<div class="row justify-content-center align-items-start"> 
+  <div class="col d-flex justify-content-center">
+    <div class="card text-white bg-primary mb-5" style="max-width: 400rem;">
+      <div class="card-header text-center">
+        Select a meal
+      </div>
+      <div class="card-body">
+ <%= bootstrap_form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do |f| %>
+    <%= f.select :meal_id, options_from_collection_for_select(@meals, :id, :name), include_blank: true %><br>
+    <%= f.submit "Select Meal" %>
+    <% end %>
+      </div>
+    </div>
+  </div>
       
      
     <% if @selected_meal %>
@@ -30,7 +68,7 @@ Here is your diet.
     c:<%= @selected_meal.carbs %> p:<%= @selected_meal.protein %> f:<%= @selected_meal.fat %>
     calories:<%= total_calories(@selected_meal) %>
    
-<br>
+
 
     <% @selected_meal.foods.where(user_id: @user.id).each do |food| %> 
     <%= food.name %> c:<%= food.carbs %> p:<%= food.protein %> f:<%= food.fat %><br>
@@ -39,21 +77,22 @@ Here is your diet.
         <%end%>
     <% end %>
    
-
-<%= form_with(model: @meal, url: "/meals", method: "post", local: true) do |f| %>
+<div class="d-flex align-items-center flex-column">
+    <div class="card text-white bg-primary mb-3" style="max-width: 400rem;">
+      <div class="card-header text-center">
+        Create a meal
+      </div>
+      <div class="card-body">
+<%= bootstrap_form_with(model: @meal, url: "/meals", method: "post", layout: :horizontal, label_col: "col-4", control_col: "col-8") do |f| %>
     <%= f.hidden_field :location, value: "diets" %>
     <%= render partial: "meals/new", locals: {this_user: @user, f: f} %>
- 
-
    
 <% end %>
-    <br>
-
-   <%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
-    <%= label_tag :meal_id %>
-    <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Meal", include_blank: true %>
-    <%= submit_tag("Select Meal") %>
-    <% end %>
+  <br>
+      </div>
+    </div>
+  </div>
+  </div>
 
     
     
@@ -69,7 +108,7 @@ Here is your diet.
    
 
 
-    <% end %>
+    
    
 
-
+</div>

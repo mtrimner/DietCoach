@@ -1,6 +1,6 @@
 
 <div class="d-flex align-items-center flex-column">
-  <div class="card text-white bg-primary pl-6 mb-6 align-items-center" style="width: 25rem;">
+  <div class="card text-white bg-primary mb-6 align-items-center" style="width: 25rem;">
       <%= bootstrap_form_with model: [@user, @user_stats], local: true do |f| %>
         <%= f.radio_button :sex, "Male" %>
         <%= f.radio_button :sex, "Female" %>

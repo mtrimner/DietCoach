@@ -5,7 +5,7 @@
     <h4 class="card-title">Answer as accurately as possible</h4>
     <p class="card-text">
     <h5>What is your goal?</h5>
-    <%= f.radio_button :goal, "lose", label: "I want to lost bodyfat." %>
+    <%= f.radio_button :goal, "lose", label: "I want to lose bodyfat." %>
     <%= f.radio_button :goal, "maintain", label: "I want to maintain." %>
     <%= f.radio_button :goal, "build", label: "I want to build muscle." %>
   <br>
@@ -18,7 +18,7 @@
     <%= f.radio_button :activity_level, 4, label: "Very active(nurse/moderate exercise 5-7 days/week)" %>
     <%= f.radio_button :activity_level, 5, label: "Extremely active(construction worker/very hard exercise)" %>
   <br>
-    <h5> How many meals per day do you want to eat?</h5>
+    <h5> How many meals per day do you want to eat? </h5>
     <%= f.radio_button :meals_per_day, 1, label: "1 meal per day" %>
     <%= f.radio_button :meals_per_day, 2, label: "2 meals per day" %>
     <%= f.radio_button :meals_per_day, 3, label: "3 meals per day" %>
