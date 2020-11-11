@@ -26,14 +26,14 @@
     <div class="col d-flex justify-content-center">
       <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
         <div class="card-body">
-          <h4 class="card-title">Carbs: <%= protein_amount %>g </h4>
+          <h4 class="card-title">Protein: <%= protein_amount %>g </h4>
         </div>
       </div>
     </div>
     <div class="col d-flex justify-content-center">
       <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
         <div class="card-body">
-          <h4 class="card-title">Carbs: <%= fat_amount %>g </h4>
+          <h4 class="card-title">Fat: <%= fat_amount %>g </h4>
         </div>
       </div>
     </div>
@@ -45,11 +45,11 @@
       </div>
     </div>
   </div>
-<%= daily_calories %>
-
-<div class="row justify-content-center align-items-start"> 
-  <div class="col d-flex justify-content-center">
-    <div class="card text-white bg-primary mb-5" style="max-width: 400rem;">
+<br>
+<br>
+<div class="row d-flex justify-content-center"> 
+  <div class="col-4 d-flex align-items-start">
+    <div class="card text-white bg-dark mb-3" style="width: 30rem;">
       <div class="card-header text-center">
         Select a meal
       </div>
@@ -61,42 +61,45 @@
       </div>
     </div>
   </div>
-      
-     
-    <% if @selected_meal %>
+  <div class="col-4 d-flex align-items-start">
+    <div class="card text-white bg-dark mb-3" style="width: 30rem;">
+      <div class="card-header text-center">
+        Create a meal
+      </div>
+      <div class="card-body">
+       <%= bootstrap_form_with(model: @meal, url: "/meals", method: "post", layout: :horizontal, label_col: "col-4", control_col: "col-8") do |f| %>
+       <%= f.hidden_field :location, value: "diets" %>
+       <%= render partial: "meals/new", locals: {this_user: @user, f: f} %>
+       <% end %>
+       </div>
+      </div>
+    </div>
+
+<div class=" col-4 d-flex align-items-start">
+    <div class="card text-white bg-dark mb-3" style="width: 30rem;">
+      <div class="card-header text-center">
+        Meal
+      </div>
+      <div class="card-body">
+   <% if @selected_meal %>
     <%= @selected_meal.name %> 
     c:<%= @selected_meal.carbs %> p:<%= @selected_meal.protein %> f:<%= @selected_meal.fat %>
     calories:<%= total_calories(@selected_meal) %>
-   
-
-
     <% @selected_meal.foods.where(user_id: @user.id).each do |food| %> 
     <%= food.name %> c:<%= food.carbs %> p:<%= food.protein %> f:<%= food.fat %><br>
     
         calories:<%= total_calories(food)%>
         <%end%>
     <% end %>
-   
-<div class="d-flex align-items-center flex-column">
-    <div class="card text-white bg-primary mb-3" style="max-width: 400rem;">
-      <div class="card-header text-center">
-        Create a meal
-      </div>
-      <div class="card-body">
-<%= bootstrap_form_with(model: @meal, url: "/meals", method: "post", layout: :horizontal, label_col: "col-4", control_col: "col-8") do |f| %>
-    <%= f.hidden_field :location, value: "diets" %>
-    <%= render partial: "meals/new", locals: {this_user: @user, f: f} %>
-   
-<% end %>
-  <br>
-      </div>
     </div>
-  </div>
-  </div>
+    </div>
+    </div>
 
-    
-    
-  
+
+    </div>
+   
+
+</div>
 
 <%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
     <%= label_tag :filter %>
@@ -104,11 +107,3 @@
     <%= submit_tag("Filter") %>
     <% end %>
 <br>
-
-   
-
-
-    
-   
-
-</div>

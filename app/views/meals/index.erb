@@ -1,24 +1,24 @@
-Your Meals
 
-<% @user_meals.each do |meal| %>
-<%= form_with(url: meal_path(meal), method: "get", local: true) do |f| %>
-<%= f.label :meal_id, meal.name %>
-<%= f.hidden_field :meal_id, value: meal.id %>
-<%= f.submit "See Meal" %>
-<% end %>
-<% end %>
-
-<br>
- Community Meals
-
-<% @community_meals.each do |meal| %>
-<%= form_with(url: '/foods', method: "post", local: true) do |f| %>
-<%= f.label :meal_id, meal.name %>
-<%= f.hidden_field :meal_id, value: meal.id %>
-<%= f.submit %>
-<% end %>
-<% end %>
-
+<div class="container">
+  <div class="row justify-content-center">   
+    <div class="col d-flex justify-content-center">
+      <ul class="list-group list-unstyled">
+      Your Meals
+        <% @user_meals.each do |meal| %>
+        <li><%= link_to "#{meal.name}", meal_path(meal), class: "list-group-item list-group-item-action" %></li>
+        <% end %>
+      </ul>
+    </div>
+ 
+    <div class="col d-flex justify-content-center">
+      <ul class="list-group list-unstyled">
+        Community Meals
+        <% @community_meals.each do |meal| %>
+        <li><%= link_to "#{meal.name}", foods_path(:meal_id => meal.id), method: "post", class: "list-group-item list-group-item-action" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
 
 <%= form_with(url: '/meals', method: "post", local: true) do %>
@@ -26,3 +26,8 @@ Your Meals
     <%= select_tag :meal_id, options_from_collection_for_select(@meals, :id, :name), prompt: "Select Macro", include_blank: true %>
     <%= submit_tag("Select Meal") %>
     <% end %>
+
+    
+    
+
+    </div>

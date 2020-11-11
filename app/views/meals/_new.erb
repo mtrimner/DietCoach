@@ -3,7 +3,7 @@
     <%= f.hidden_field :carbs %>
     <%= f.hidden_field :protein %>
     <%= f.hidden_field :fat %>
-    <h5 class="text-center"> Add your foods below </h5>
+    <h6 class="text-center text-white"> Add your foods below </h6>
     <%= f.fields_for :foods do | i | %>
         <%= i.text_field :name, label: "Food Name" %> 
         <%= i.number_field :serving_size, label: "Serving Size", append: "grams" %>
