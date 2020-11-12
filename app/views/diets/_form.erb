@@ -26,9 +26,9 @@
     <%= f.radio_button :meals_per_day, 5, label: "5 meals per day" %>
     <%= f.radio_button :meals_per_day, 6,  label: "6 meals per day" %>
     <br>
-    <%= f.date_select :start_date, label: "Select your start date" %>
+    <%= f.date_field :start_date, label: "Select your start date" %>
 
-    <%= f.date_select :end_date, label: "Select your end date" %> 
+    <%= f.date_field :end_date, label: "Select your end date" %> 
     <%= f.hidden_field :user_id %>
     <%= f.submit "Submit" %>
     </p>
