@@ -13,9 +13,11 @@
         </a>
       </li>
       <% if user_signed_in? %>
+      <% if current_user.diet != nil %>
       <li class="nav-item">
       <%= link_to 'Home', user_diet_path(current_user, current_user.diet), class: "nav-link" %>
       </li>
+      <% end %>
       <li class="nav-item">
       <%= link_to 'Edit your account', edit_user_registration_path, class: "nav-link" %>
       </li>

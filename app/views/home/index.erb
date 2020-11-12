@@ -10,20 +10,20 @@
       </div>
     <div class="card-body">
       <h4 class="card-title align-text-center text-center">
-        <%if @diet == nil%>
+        <% if @user && @diet == nil %>
         Let's Begin
         <% else %>
-        Welcome back!
+        <%= link_to 'Sign up', new_user_registration_path, class: "nav-link text-white" %>
+        <%= link_to 'Sign in', new_user_session_path, class: "nav-link text-white" %>
         <% end %>
       </h4>
       <p class="card-text align-text-center text-center">
-      <%if @diet == nil%>
-        On the next few screens, we are going to ask some basic information about you. Answer the questions as accurately as possible to help us create an effective diet for you. If you make a mistake, don't worry. Keep going and you can easily edit it later.
+      <%if @user && @diet == nil%>
+        On the next few screens, we are going to ask some basic information about you. Answer the questions as accurately as possible to help us create an effective diet for you. If you make a mistake, don't worry. Keep going and you can easily edit it later.<br>
         <br>
-        <br>
-        <%= link_to 'Get Started', new_user_user_stat_path(current_user) %>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Create Diet', new_user_user_stat_path(current_user), class: "text-decoration-none" %></button>
         <% else %>
-        Welcome back!
+        Welcome to your new diet coach!
         <% end %>
       </p>        
     </div>

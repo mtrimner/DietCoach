@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">   
     <% if Date.today < @start_date %>
-    <p> Your diet starts in <%= Integer(@start_date - Date.today) %>'s. This is just a preview of day 1.</p> 
-    <%= link_to 'Click here to edit the diet and change it\'s start date', edit_diet_path(@diet) %>
+    <p> Your diet starts in <%= Integer(@start_date - Date.today) %>day('s). This is just a preview of day 1.</p> 
+    <p class="font-weight-bold"> <%= link_to 'Click here to edit the diet and change it\'s start date', edit_diet_path(@diet), data:{confirm: "Editing diet will change current parameters. Are you sure you want to edit?"} %></p>
     <% elsif Date.today > @end_date %>
     <p> Your diet is over! Congrats! </p>
     <% else %>

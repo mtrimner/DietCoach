@@ -1,8 +1,36 @@
-<%= @meal.name %><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col">
+     <h3 class="text-center"> <%=@meal.name%> </h3>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-9">
+<table class="table table-bordered table-striped"> 
+  <thead>
+    <tr>
+      <th class="w-25 text-center" scope="col">Food</th>
+      <th class="w-25 text-center" scope="col">Serving Size</th>
+      <th class="w-25 text-center" scope="col">Carbs</th>
+      <th class="w-25 text-center" scope="col">Fat</th>
+      <th class="w-25 text-center" scope="col">Protein</th>
+    </tr>
+  </thead>
+<% @meal.get_user_meal_foods(@user).each do | food | %>
+  <tbody>
+    <tr>
+      <th class="w-20" scope="row"><%=food.name%></th>
+      <td><%=food.serving_size%> grams</td>
+      <td><%=food.carbs%> grams</td>
+      <td><%=food.fat%> grams</td>
+      <td><%=food.protein%> grams</td>
+    </tr>  
+  </tbody>
+  <% end %>
+</table>    
 
-<% @meal.foods.each do | food | %>
-<%= food.name %>
-<% end %>
-
+    </div>
+  </div>
+</div>
 
 <h6><%= link_to("Delete your meal", meal_path(@meal), method: :delete, data:{confirm: "Do you really want to delete me?"}) %></h6>

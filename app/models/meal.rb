@@ -13,5 +13,9 @@ class Meal < ApplicationRecord
         end
     end
 
+    def get_user_meal_foods(user)
+        self.foods.where(user_id: user.id)
+    end
+
 end
     

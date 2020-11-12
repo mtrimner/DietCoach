@@ -32,6 +32,7 @@ class MealsController < ApplicationController
 
     def show
         @meal = Meal.find_by(id: params[:id])
+        binding.pry
     end
 
     def destroy
