@@ -12,7 +12,7 @@
 <br>
 
   <div class="row d-flex justify-content-center">
-    <h4>Meal 1 targets!</h4>
+    <h4>Try to hit the following targets for each of your <%=@diet.meals_per_day%> meals. </h4>
   </div>
     <br>
   <div class="row d-flex justify-content-center">
@@ -82,14 +82,12 @@
       </div>
       <div class="card-body">
    <% if @selected_meal %>
-    <%= @selected_meal.name %> 
-    c:<%= @selected_meal.carbs %> p:<%= @selected_meal.protein %> f:<%= @selected_meal.fat %>
-    calories:<%= total_calories(@selected_meal) %>
+    <p><%= @selected_meal.name %> meal stats:<br>
+    carbs: <%= @selected_meal.carbs %> protein: <%= @selected_meal.protein %> fat: <%= @selected_meal.fat %>  calories: <%= total_calories(@selected_meal) %>
+    <p>Food stats:<br>
     <% @selected_meal.foods.where(user_id: @user.id).each do |food| %> 
-    <%= food.name %> c:<%= food.carbs %> p:<%= food.protein %> f:<%= food.fat %><br>
-    
-        calories:<%= total_calories(food)%>
-        <%end%>
+    <%= food.name %> - carbs: <%= food.carbs %> protein: <%= food.protein %> fat: <%= food.fat %> calories: <%= total_calories(food)%><br>
+        <%end%></p>
     <% end %>
     </div>
     </div>

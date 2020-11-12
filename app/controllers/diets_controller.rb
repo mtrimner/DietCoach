@@ -12,7 +12,7 @@ def create
     if @diet.save
        redirect_to user_diet_path(@user, @diet)
     else  
-        render '/new'
+        render "/diets/new"
     end
 end 
 

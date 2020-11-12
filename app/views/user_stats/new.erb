@@ -1,6 +1,15 @@
+<div class="container">
+<% if @user_stats.errors.any? %>
+<div class="alert alert-dismissible alert-warning">
+  <h4 class="alert-heading">Warning!</h4>
+  <p class="error"><%= @user_stats.errors.full_messages.to_sentence %></p>
+  </p>
+</div>
+<% end %>
+
 <div class="row justify-content-center">
   <div class="col d-flex justify-content-center">
-    <div class="card text-white bg-primary pb-6 mb-6 align-items-center" style="width: 25rem;">
+    <div class="card text-white bg-primary pb-16 mb-16 align-items-center" style="width: 25rem;">
       <div class="card-header">Enter info</div>
       <div class="card-body">
         <%= bootstrap_form_with model: [@user, @user_stats], local: true do |f| %>
@@ -16,3 +25,8 @@
     </div>
   </div>
 </div>
+</div>
+<br>
+<br>
+<br>
+<br>
