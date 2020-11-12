@@ -9,15 +9,9 @@ end
 def create
     @user = current_user
     @diet = Diet.new(diet_params)
-    binding.pry
-    if @diet.valid?
-        binding.pry
-        if @diet.save
-            redirect_to user_diet_path(@user, @diet)
-        else  
-            render '/new'
-        end
-    else
+    if @diet.save
+       redirect_to user_diet_path(@user, @diet)
+    else  
         render '/new'
     end
 end 

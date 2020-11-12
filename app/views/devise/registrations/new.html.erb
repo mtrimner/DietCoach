@@ -1,11 +1,16 @@
 
+<div class="alert alert-dismissible alert-warning">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Warning!</h4>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  </p>
+</div>
 <div class="d-flex align-items-center flex-column">
   <div class="card text-white bg-primary mb-3 align-items-center" style="max-width: 20rem;">
     <div class="card-header">Sign Up</div>
     <div class="card-body">
         <p class="card-text">Enter your name, email, and create a password.</p>
         <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
         <%= f.text_field :name, placeholder: "Name" %>
         <%= f.email_field :email, placeholder: "Enter email" %>
         <% if @minimum_password_length %>
