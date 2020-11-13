@@ -14,9 +14,17 @@
       <ul class="list-group list-unstyled w-75">
         <h5 class="text-secondary">Community Meals</h5>
         <% @community_meals.each do |meal| %>
-        <li><%= link_to "#{meal.name}", foods_path(:meal_id => meal.id), method: "post", class: "list-group-item list-group-item-action font-weight-bolder list-group-item-dark" %></li>
+        <li><%= link_to "#{meal.name}", foods_path(:meal_id => meal.id), method: "post", class: "list-group-item list-group-item-action font-weight-bolder list-group-item-dark", local: true %></li>
         <% end %>
       </ul>
+    </div>
+    <div class="col-4 d-flex justify-content-center">
+      <%= bootstrap_form_with(url: meals_path, method: "get", local: true) do %>
+      <%= label_tag :filter %>
+      <%= select_tag :filter, options_for_select(["High Protein", "High Carb", "High Fat"]), prompt: "Select Macro" %>
+      <%= submit_tag("Filter") %>
+      <% end %>
+<br>
     </div>
   </div>
     
