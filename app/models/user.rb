@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_one :diet 
   has_one :user_stat
   validates :email, presence: true
-  validates :password, presence: true
+ 
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
