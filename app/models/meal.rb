@@ -2,8 +2,9 @@ class Meal < ApplicationRecord
     has_many :foods, dependent: :destroy
     has_many :users, through: :foods
     
-
-    # accepts_nested_attributes_for :foods, reject_if: proc { |attributes| attributes[:name].blank? || attributes[:serving_size].blank? || attributes[:carbs].blank? || attributes[:fat].blank? || attributes[:protein].blank? || attributes[:user_id].blank? }
+    scope :high_protein, -> { where("protein > 30")}
+    scope :high_carb, -> { where("carbs > 30")}
+    scope :high_fat, -> { where("fat > 15")}
 
     def foods_attributes=(food_attributes)
         food_attributes.values.each do |food|
