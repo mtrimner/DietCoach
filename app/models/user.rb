@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  has_many :foods
-  has_many :meals, through: :foods
-  has_one :diet 
-  has_one :user_stat
+  has_many :foods, dependent: :destroy
+  has_many :meals, through: :foods, dependent: :destroy
+  has_one :diet, dependent: :destroy
+  has_one :user_stat, dependent: :destroy
   validates :email, presence: true
  
 

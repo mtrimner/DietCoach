@@ -1,16 +1,15 @@
 <div class="container">
   <% if @diet.errors.any? %>
   <div class="alert alert-dismissible alert-warning">
-  <h4 class="alert-heading">Uh-oh</h4>
-  <p class="mb-0"><%= @diet.errors.full_messages.to_sentence %></p>
-</div>
-<% end %>
-
-  <div class="d-flex align-items-center flex-column">
-  <h1>Edit Diet</h1>
-  <br>
-  <%= bootstrap_form_with model: @diet, local: true do |f| %>
-
-  <%= render 'form', f: f %>
-
+    <h4 class="alert-heading">Uh-oh</h4>
+    <p class="mb-0"><%= @diet.errors.full_messages.to_sentence %></p>
+  </div>
   <% end %>
+  <div class="d-flex align-items-center flex-column">
+    <h1>Edit Diet</h1>
+  <br>
+    <%= bootstrap_form_with model: @diet, local: true do |f| %>
+    <%= render 'form', f: f %>
+  <% end %>
+  </div>
+</div>
