@@ -1,7 +1,16 @@
 class MealsController < ApplicationController
 
     def index
-        @meals = Meal.all
+        if params[:filter == ""]
+            @meals = Meal.all
+        elsif params[:filter] == "High Protein"
+            @meals = Meal.high_protein
+        elsif params[:filter] == "High Carb"
+            @meals = Meal.high_carb
+        else params[:filter] == "High Fat"
+            @meals = Meal.high_fat
+        end
+
         # @user = current_user
         @user_meals = @user.meals.uniq
         @community_meals = @meals - @user.meals
@@ -31,9 +40,30 @@ class MealsController < ApplicationController
     end
 
     def show
+
         @meal = Meal.find_by(id: params[:id])
-        binding.pry
+    
     end
+
+    def edit
+        @meal = Meal.find_by(id: params[:id])
+    end
+
+    def update
+        @user = current_user
+        @meal = Meal.find_by(id: params[:id])
+          @meal.update(name: params[:meal][:name])
+          @counter = 0
+          @meal.foods.each do |food| 
+            food.update(meal_params[:foods_attributes].values[@counter])
+            @counter += 1
+          end
+          if @meal.errors.any?
+            render "edit"
+          else
+            redirect_to meal_path(@meal)
+          end
+      end
 
     def destroy
         @meal = Meal.find_by_id(params[:id])

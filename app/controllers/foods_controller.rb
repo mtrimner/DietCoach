@@ -3,6 +3,7 @@ class FoodsController < ApplicationController
 
     def create
         # @user = current_user
+       
         @diet = Diet.find_by(user_id: @user.id)
         @meal = Meal.find_by_id(params[:meal_id])
         @meal.foods.each do | food |
