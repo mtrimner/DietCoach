@@ -30,7 +30,9 @@
 </table>    
 
     </div>
+    <div class="col-9 d-flex justify-content-center">
+      <button type="button" class="btn btn-primary"><%= link_to "Edit meal", edit_meal_path(@meal), class: "text-white" %></button>
+      <button type="button" class="btn btn-primary"><%= link_to("Delete your meal", meal_path(@meal), method: :delete, class: "text-white", data:{confirm: "Do you really want to delete me?"}) %></button>
+    </div>  
   </div>
 </div>
-
-<h6><%= link_to("Delete your meal", meal_path(@meal), method: :delete, data:{confirm: "Do you really want to delete me?"}) %></h6>
