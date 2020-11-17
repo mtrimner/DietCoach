@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
     skip_before_action :set_user
-    
+    skip_before_action :authenticate_user!
 
     private
 

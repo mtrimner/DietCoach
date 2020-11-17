@@ -5,10 +5,10 @@
         Edit Meal
       </div>
       <div class="card-body">
-      <%= bootstrap_form_with model: @meal, local: true, layout: :horizontal, label_col: "col-3", control_col: "col-9" do |f| %>
-      <%= render partial: "meals/new", locals: {this_user: @user, f: f} %>
-      <% end %>
-    <br>
+        <%= bootstrap_form_with model: @meal, local: true, layout: :horizontal, label_col: "col-3", control_col: "col-9" do |f| %>
+        <%= render partial: "meals/new", locals: {this_user: @user, f: f} %>
+        <% end %>
+      <br>
       </div>
     </div>
   </div>
