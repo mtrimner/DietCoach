@@ -1,5 +1,5 @@
 class MealsController < ApplicationController
-
+    before_action :set_meal, only: [:show, :edit, :update, :destroy]
     def index
         if params[:filter == ""]
             @meals = Meal.all
@@ -38,38 +38,32 @@ class MealsController < ApplicationController
     end
 
     def show
-
-        @meal = Meal.find_by(id: params[:id])
     
     end
 
     def edit
-        @meal = Meal.find_by(id: params[:id])
+       
     end
 
     def update
-        @user = current_user
-        @meal = Meal.find_by(id: params[:id])
-          @meal.update(name: params[:meal][:name])
-          @counter = 0
-          @meal.foods.each do |food| 
-            food.update(meal_params[:foods_attributes].values[@counter])
-            @counter += 1
-          end
-          if @meal.errors.any?
-            render "edit"
-          else
-            redirect_to meal_path(@meal)
-          end
-      end
+        @meal.update(name: params[:meal][:name])
+        @counter = 0
+        @meal.foods.each do |food| 
+          food.update(meal_params[:foods_attributes].values[@counter])
+          @counter += 1
+        end
+        if @meal.errors.any?
+          render "edit"
+        else
+          redirect_to meal_path(@meal)
+        end
+    end
 
     def destroy
-        @meal = Meal.find_by_id(params[:id])
         @user.meals.delete(@meal)
         @user_foods = Food.associated_food(@user.id, @meal.id)
-
         if @meal.foods.count == 0
-            @meal.delete
+          @meal.delete
         end
        redirect_to meals_path
     end
@@ -80,6 +74,9 @@ class MealsController < ApplicationController
         params.require(:meal).permit(:name, :carbs, :fat, :protein, foods_attributes: [:name, :serving_size, :carbs, :fat, :protein, :user_id])
     end
 
+    def set_meal
+        @meal = Meal.find_by(id: params[:id])
+    end
     
     def assign_meal_macros
         total_meal_carb_count
