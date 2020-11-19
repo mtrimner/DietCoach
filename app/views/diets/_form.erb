@@ -5,9 +5,9 @@
     <h4 class="card-title">Answer as accurately as possible</h4>
     <p class="card-text">
     <h5 class="text-white">What is your goal?</h5>
-    <%= f.radio_button :goal, "lose", label: "I want to lose bodyfat." %>
+    <%= f.radio_button :goal, "lose", label: "I want to lose bodyfat(CURRENT WEIGHT must be MORE than TARGET WEIGHT)." %>
     <%= f.radio_button :goal, "maintain", label: "I want to maintain." %>
-    <%= f.radio_button :goal, "build", label: "I want to build muscle." %>
+    <%= f.radio_button :goal, "build", label: "I want to build muscle(CURRENT WEIGHT must be LESS than TARGET WEIGHT)." %>
   <br>
     <%= f.number_field :current_weight, label: "Current weight in pounds.", append: "lbs" %> <br>
     <%= f.number_field :target_weight, label: "Target weight in pounds.", append: "lbs" %> <br>
