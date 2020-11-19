@@ -11,13 +11,11 @@ class MealsController < ApplicationController
             @meals = Meal.high_fat
         end
 
-        # @user = current_user
         @user_meals = @user.meals.uniq
         @community_meals = @meals - @user.meals
     end
     
     def new
-        # @user = current_user
         @meal = Meal.new
         5.times { @meal.foods.build }
     end
