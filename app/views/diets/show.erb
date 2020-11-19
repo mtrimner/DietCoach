@@ -1,16 +1,27 @@
 <div class="container">
   <div class="row justify-content-center">   
-    <% if Date.today < @start_date %>
-    <p> Your diet starts in <%= Integer(@start_date - Date.today) %>day('s). This is just a preview of day 1.</p> 
-    <p class="font-weight-bold"> <%= link_to 'Click here to edit the diet and change it\'s start date', edit_diet_path(@diet), data:{confirm: "Editing diet will change current parameters. Are you sure you want to edit?"} %></p>
-    <% elsif Date.today > @end_date %>
-    <p> Your diet is over! Congrats! </p>
-    <% else %>
-    <h4>Today's date: <%= Date.today.strftime("%a, %e %b %Y") %></h4>
-    <% end %>
+    <div class="col d-flex justify-content-center">
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <%= bootstrap_form_with model: @diet, url: diet_path(@diet), method: "patch", local: true do |f| %>
+          <%= f.number_field :current_weight, label: "update current weight", append: "lbs" %>
+          <%= f.submit "Submit" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <% if Date.today < @start_date %>
+        <p> Your diet starts in <%= Integer(@start_date - Date.today) %>day('s). This is just a preview of day 1.</p> 
+        <p class="font-weight-bold"> <%= link_to 'Click here to edit the diet and change it\'s start date', edit_diet_path(@diet), data:{confirm: "Editing diet will change current parameters. Are you sure you want to edit?"} %></p>
+      <% elsif Date.today > @end_date %>
+        <p> Your diet is over! Congrats! </p>
+      <% else %>
+        <h4>Today's date: <%= Date.today.strftime("%a, %e %b %Y") %></h4>
+      <% end %>
+    </div>
   </div>
-<br>
-
+  <br>
   <div class="row d-flex justify-content-center">
     <h4>Try to hit the following targets for each of your <%=@diet.meals_per_day%> meals. </h4>
   </div>
@@ -92,16 +103,5 @@
     </div>
     </div>
     </div>
-
-
     </div>
-   
-
 </div>
-
-<%= form_with(url: user_diet_path(@user, @diet), method: "get", local: true) do %>
-    <%= label_tag :filter %>
-    <%= select_tag :filter, options_for_select(["High Protein", "High Carb", "High Fat"]), prompt: "Select Macro" %>
-    <%= submit_tag("Filter") %>
-    <% end %>
-<br>
