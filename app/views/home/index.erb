@@ -3,11 +3,11 @@
       
     <div class="card-header text-center">
       <% if @user %>
-      Hi <%= @user.name %>!
+        Hi <%= @user.name %>!
       <% else %>
-      <p> Hello!</p>
+        <p> Hello!</p>
       <% end %>
-      </div>
+    </div>
     <div class="card-body">
       <h4 class="card-title align-text-center text-center">
         <% if @user && @diet == nil %>

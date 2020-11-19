@@ -12,6 +12,9 @@
       <li class="nav-item">
       <%= link_to 'Home', user_diet_path(current_user, current_user.diet), class: "nav-link" %>
       </li>
+      <li class="nav-item">
+      <%= link_to 'New Diet', edit_diet_path(current_user.diet), data:{confirm: "Changing any diet parameters is permanent. Are you sure you want to change your diet?"}, class: "nav-link" %>
+      </li>
       <% end %>
       <li class="nav-item">
       <%= link_to 'Edit your account', edit_user_registration_path, class: "nav-link" %>
